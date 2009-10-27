@@ -11,6 +11,7 @@ Yeah I know it is Authlogics intention not to have a generator. But I personally
 * Login form, views for the user management
 * Some nice looking routes
 * Basic test coverage
+* Support for Haml view templates
 
 
 == Installation
@@ -23,7 +24,7 @@ Yeah I know it is Authlogics intention not to have a generator. But I personally
 
 1. Run the generator
 
-	$ script/generate authlogic
+	$ script/generate authlogic [--haml]
 
 2. Run the database migrations
 

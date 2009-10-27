@@ -1,8 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + "/lib/insert_routes.rb")
 
 class AuthlogicGenerator < Rails::Generator::Base
-                  
+  default_options :use_haml => false
+
   def manifest
+    template = options[:use_haml] ? 'haml' : 'erb'
+
     record do |m|
       
       # COPY FILES
@@ -16,12 +19,12 @@ class AuthlogicGenerator < Rails::Generator::Base
 
       # app/views
       m.directory('app/views/user_sessions')
-      m.file('app/views/user_sessions/new.html.erb', 'app/views/user_sessions/new.html.erb')
+      m.file("app/views/user_sessions/new.html.#{template}", "app/views/user_sessions/new.html.#{template}")
       m.directory('app/views/users')
-      m.file('app/views/users/_form.html.erb', 'app/views/users/_form.html.erb')      
-      m.file('app/views/users/edit.html.erb', 'app/views/users/edit.html.erb')      
-      m.file('app/views/users/new.html.erb', 'app/views/users/new.html.erb')      
-      m.file('app/views/users/show.html.erb', 'app/views/users/show.html.erb')                    
+      m.file("app/views/users/_form.html.#{template}", "app/views/users/_form.html.#{template}")
+      m.file("app/views/users/edit.html.#{template}", "app/views/users/edit.html.#{template}")
+      m.file("app/views/users/new.html.#{template}", "app/views/users/new.html.#{template}")
+      m.file("app/views/users/show.html.#{template}", "app/views/users/show.html.#{template}")
 
       # lib
       m.file('lib/authentication_handling.rb', 'lib/authentication_handling.rb')
@@ -36,11 +39,9 @@ class AuthlogicGenerator < Rails::Generator::Base
       # test/unit
       m.file('test/unit/user_session_test.rb', 'test/unit/user_session_test.rb')
       m.file('test/unit/user_test.rb', 'test/unit/user_test.rb')      
-      
-      
+
       # Include authentication handling module in application controller
       m.edit_file('/app/controllers/application_controller.rb', 'class ApplicationController < ActionController::Base', 'include AuthenticationHandling')
-      
       
       # CREATE ROUTES    
       # user sessions
@@ -53,8 +54,6 @@ class AuthlogicGenerator < Rails::Generator::Base
       m.route_name('signup', '/signup', {:controller => "users", :action => "new", :conditions => { :method => :get }})
       m.route_name('signup', '/signup', {:controller => "users", :action => "create", :conditions => { :method => :post }})        
       
-      
-      
       # CREATE DATABASE MIGRATIONS
       m.migration_template "db/migrate/create_users.rb", "db/migrate", :migration_file_name => 'create_users'
       
@@ -62,5 +61,10 @@ class AuthlogicGenerator < Rails::Generator::Base
       m.readme "../INSTALL"
     end
   end
-      
+
+  def add_options!(opt)
+    opt.separator ''
+    opt.separator 'Options:'
+    opt.on("--haml", "Use Haml view templates") { |v| options[:use_haml] = true }
+  end
 end
