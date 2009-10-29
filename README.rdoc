@@ -45,5 +45,5 @@ Yeah I know it is Authlogics intention not to have a generator. But I personally
 * The generator will not run properly if you already have a user model
 
 
-Copyright (c) 2009 Christian Felder (www.masone.ch)
+Copyright (c) 2009 Christian Felder (www.masone.ch).
 Thanks to Nick Plante (zapnap) for adding Haml and Rspec support!
