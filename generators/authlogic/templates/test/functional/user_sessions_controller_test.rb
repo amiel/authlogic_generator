@@ -4,7 +4,7 @@ require "authlogic/test_case"
 class UserSessionsControllerTest < ActionController::TestCase
 
   def valid_user_session_attributes
-    @valid_user_session_attributes ||= { :login => 'klark', :password => 'superman1000' }
+    @valid_user_session_attributes ||= { :email => 'klark@superman.com', :password => 'superman1000' }
   end
 
   test "should get new" do

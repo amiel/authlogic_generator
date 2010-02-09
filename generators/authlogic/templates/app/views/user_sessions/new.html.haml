@@ -3,9 +3,9 @@
 - form_for @user_session, :url => login_url do |f|
   = f.error_messages
   %p
-    = f.label :login
+    = f.label :email
     %br
-    = f.text_field :login
+    = f.text_field :email
   %p
     = f.label :password
     %br

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Account registered!"
+      flash[:notice] = I18n.t(:'flashes.users.create.notice', :default => "Account registered!")
       redirect_back_or_default account_url
     else
       render :action => :new
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
+      flash[:notice] = I18n.t(:'flashes.users.update.notice', :default => "Account updated!")
       redirect_to account_url
     else
       render :action => :edit
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @user = @current_user
     @user.destroy
     
-    flash[:notice] = "Account deleted!"
+    flash[:notice] = I18n.t(:'flashes.users.destroy.notice', :default => "Account deleted!")
     redirect_to '/'
   end
   

@@ -18,7 +18,7 @@ private
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:notice] = I18n.t(:'flashes.users.must_be_logged_in', :default => "You must be logged in to access this page")
       redirect_to login_url
       return false
     end
@@ -27,7 +27,7 @@ private
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = "You must be logged out to access this page"
+      flash[:notice] = I18n.t(:'flashes.users.must_be_logged_out', :default => "You must be logged out to access this page")
       redirect_to account_url
       return false
     end

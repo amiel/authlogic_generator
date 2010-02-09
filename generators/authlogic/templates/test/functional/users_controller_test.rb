@@ -6,7 +6,7 @@ class UsersControllerTest < ActionController::TestCase
   setup :activate_authlogic
 
   def valid_user_attributes
-    @valid_user_attributes ||= { :login => 'kent', :password => 'superman1000', :password_confirmation => 'superman1000' }
+    @valid_user_attributes ||= { :email => 'kent@superman.com', :password => 'superman1000', :password_confirmation => 'superman1000' }
   end
 
   test "should get new" do
