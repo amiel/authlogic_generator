@@ -1,0 +1,20 @@
+en:
+  formtastic:
+    actions:
+      reset_password: Reset Password
+      update_password: Update Password
+      user:
+          edit: Update
+          new: Register
+      user_session:
+          new: Login
+    labels:
+        change_password: Change Password
+        user:
+            password: Password
+    titles:
+        user:
+            edit: Edit My Account
+            new: Registration
+        user_session:
+            new: Login

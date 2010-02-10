@@ -1,13 +1,10 @@
-<h1>Edit My Account</h1>
-
-<% form_for @user, :url => account_url do |f| %>
-  <%= f.error_messages %>
+<% semantic_form_for @user, :url => account_url do |f| %>
   <%= render :partial => "form", :object => f %>
 
-	<div>
-	  <%= f.submit "Update" %>
-	</div>
+	<% f.buttons do %>
+		<%= f.commit_button I18n.t(:'formtastic.actions.user.edit') %>
+	<% end %>
 <% end %>
-
-<br />
-<%= link_to "My Profile", account_path %>
+<div>
+	<%= link_to "My Profile", account_path %>
+</div>

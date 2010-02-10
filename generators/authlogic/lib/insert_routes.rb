@@ -53,4 +53,21 @@ Rails::Generator::Commands::Create.class_eval do
       end
     end
   end
+
+  def merge_en_locales
+    require File.expand_path(File.dirname(__FILE__) + "/merge_hashes.rb")
+    original_file = File.read destination_path('config/locales/en.yml')
+    original_hash = YAML::load(original_file)
+    our_hash = YAML::load(File.read(source_path('config/locales/en.yml')))
+    new_hash = our_hash.deep_merge(original_hash)
+    logger.i18n "merging en locales"
+    new_file = new_hash.to_yaml
+    new_file.sub!("---", '') #forgive me father, for i can has sinned
+    file_if_not_exists 'config/locales/en.yml', new_file do 
+      File.open(destination_path('config/locales/en.yml'), 'w') do |f|
+        f << new_file
+      end
+    end
+  end
+  
 end

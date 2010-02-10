@@ -1,19 +1,7 @@
-<h1>Login</h1>
-
-<% form_for @user_session, :url => login_url do |f| %>
-
-  <div>
-		<%= f.error_messages %>
-  	<%= f.label :email %><br />
-  	<%= f.text_field :email %><br />
-  </div>
-	<div>
-  	<%= f.label :password %><br />
-  	<%= f.password_field :password %><br />
-	</div>
-
-	<div>
-		<%= f.submit "Login" %>
-	</div>
-	
+<% semantic_form_for @user_session, :url => login_url do |f| %>
+  	<%= f.input :email %>
+  	<%= f.input :password, :as => :password %>
+	<% f.buttons do %>
+		<%= f.commit_button I18n.t(:'formtastic.actions.user_session.new') %>
+	<% end %>
 <% end %>

@@ -68,10 +68,17 @@ class AuthlogicGenerator < Rails::Generator::Base
       m.route_resource('account', :controller => "users")
       m.route_name('signup', '/signup', {:controller => "users", :action => "new", :conditions => { :method => :get }})
       m.route_name('signup', '/signup', {:controller => "users", :action => "create", :conditions => { :method => :post }})        
+
+      
+      # add locale
+      m.merge_en_locales
       
       # CREATE DATABASE MIGRATIONS
-      m.migration_template "db/migrate/create_users.rb", "db/migrate", :migration_file_name => 'create_users'
-      
+      begin
+        m.migration_template "db/migrate/create_users.rb", "db/migrate", :migration_file_name => 'create_users'
+      rescue StandardError => e
+        logger.error e
+      end
       # Show Readme
       m.readme "../INSTALL"
     end
