@@ -2,6 +2,6 @@
   	<%= f.input :email %>
   	<%= f.input :password, :as => :password %>
 	<% f.buttons do %>
-		<%= f.commit_button I18n.t(:'formtastic.actions.user_session.new') %>
+		<%= f.commit_button I18n.t(:'formtastic.actions.user_session.new', :default => "Login") %>
 	<% end %>
 <% end %>
