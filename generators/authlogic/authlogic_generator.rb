@@ -59,8 +59,7 @@ class AuthlogicGenerator < Rails::Generator::Base
       end
 
       # Include authentication handling module in application controller
-      m.edit_file('/app/controllers/application_controller.rb', 'class ApplicationController < ActionController::Base', 'include AuthenticationHandling')
-      
+      m.edit_file_if_not_exists('/app/controllers/application_controller.rb', 'class ApplicationController < ActionController::Base', 'include AuthenticationHandling')
       # CREATE ROUTES    
       # user sessions
       m.route_name('logout', '/logout', { :controller => "user_sessions", :action => 'destroy' } )
