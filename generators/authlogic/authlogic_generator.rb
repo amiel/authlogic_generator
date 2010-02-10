@@ -1,11 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + "/lib/insert_routes.rb")
 
 class AuthlogicGenerator < Rails::Generator::Base
-  default_options :use_haml  => false,
-                  :use_rspec => false
-
+  default_options :use_rspec => false
   def manifest
-    template = options[:use_haml] ? 'haml' : 'erb'
+    template = 'erb' 
 
     record do |m|
       
@@ -82,7 +80,6 @@ class AuthlogicGenerator < Rails::Generator::Base
   def add_options!(opt)
     opt.separator ''
     opt.separator 'Options:'
-    opt.on("--haml", "Use Haml view templates") { |v| options[:use_haml] = true }
     opt.on("--rspec", "Generate specs instead of tests") { |v| options[:use_rspec] = true }
   end
 end
